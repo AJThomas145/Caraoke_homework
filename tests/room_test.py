@@ -58,11 +58,11 @@ class TestRoom(unittest.TestCase):
         self.room.add_song_to_room(self.song2)
         self.room.add_song_to_room(self.song3)
         self.guest1.add_favourite_song(self.song1)
-        self.assertEqual("Whoo", self.room.is_favourite_song_available(self.room, self.guest1))
+        self.assertEqual("Whoo", self.room.is_favourite_song_available(self.guest1))
 
     def test_favourite_song_is_unavailble(self):
         self.room.add_song_to_room(self.song1)
         self.room.add_song_to_room(self.song2)
         self.room.add_song_to_room(self.song3)
         self.guest1.add_favourite_song(self.song4)
-        self.assertEqual("Sorry, favourite song is unavailable", self.room.is_favourite_song_available(self.room, self.guest1))
+        self.assertEqual("Sorry, favourite song is unavailable", self.room.is_favourite_song_available(self.guest1))

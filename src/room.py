@@ -38,8 +38,8 @@ class Room:
             return True
         return False
 
-    def is_favourite_song_available(self, room, guest):
-        for song in room.songs_to_sing:
+    def is_favourite_song_available(self, guest):
+        for song in self.songs_to_sing:
             if song.name == guest.favourite_song[0]: 
                 return "Whoo"
             if song.name != guest.favourite_song[0]:
