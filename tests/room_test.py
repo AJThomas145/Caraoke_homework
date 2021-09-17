@@ -41,5 +41,13 @@ class TestRoom(unittest.TestCase):
     def test_room_capacity(self):
         self.assertEqual(5, self.room.capacity_of_room())
 
-    # def test_if_there_space_for_guest_in_room(self):
-    #     self.assertEqual()
+    def test_if_there_space_for_guest_in_room_yes(self):
+        self.assertEqual(True, self.room.can_I_add_guest_to_room())
+
+    def test_if_there_space_for_guest_in_room_false(self):
+        self.room.add_guest_to_room(self.guest1)
+        self.room.add_guest_to_room(self.guest2)
+        self.room.add_guest_to_room(self.guest3)
+        self.room.add_guest_to_room(self.guest1)
+        self.room.add_guest_to_room(self.guest1)
+        self.assertEqual(False, self.room.can_I_add_guest_to_room())

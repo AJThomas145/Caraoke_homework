@@ -27,6 +27,13 @@ class Room:
     def capacity_of_room(self):
         return self.capacity
 
-    
+    def can_I_add_guest_to_room(self):
+        guests_that_can_enter_room = 0
+        guests_that_can_enter_room += self.capacity
+        guests_that_can_enter_room -= self.number_of_guests_in_room()
+        if guests_that_can_enter_room >= 1:
+            return True
+        return False
+
 
 
