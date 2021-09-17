@@ -1,3 +1,5 @@
+import pdb
+
 class Room:
 
     def __init__(self, input_name,input_entry_fee):
@@ -35,6 +37,15 @@ class Room:
         if guests_that_can_enter_room >= 1:
             return True
         return False
+
+    def is_favourite_song_available(self, room, guest):
+        for song in room.songs_to_sing:
+            if song.name == guest.favourite_song[0]: 
+                return "Whoo"
+            if song.name != guest.favourite_song[0]:
+                return "Sorry, favourite song is unavailable"
+        
+        
 
 
 

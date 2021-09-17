@@ -13,6 +13,7 @@ class TestRoom(unittest.TestCase):
         self.song1 = Song("One Vision")
         self.song2 = Song("Bohemian Rhapsody")
         self.song3 = Song("we Will Rock You")
+        self.song4 = Song("Show Must Go on")
 
     def test_room_has_name(self):
         self.assertEqual("One", self.room.name)
@@ -51,3 +52,17 @@ class TestRoom(unittest.TestCase):
         self.room.add_guest_to_room(self.guest1)
         self.room.add_guest_to_room(self.guest1)
         self.assertEqual(False, self.room.can_I_add_guest_to_room())
+
+    def test_is_favourite_song_is_availble(self):
+        self.room.add_song_to_room(self.song1)
+        self.room.add_song_to_room(self.song2)
+        self.room.add_song_to_room(self.song3)
+        self.guest1.add_favourite_song(self.song1)
+        self.assertEqual("Whoo", self.room.is_favourite_song_available(self.room, self.guest1))
+
+    def test_favourite_song_is_unavailble(self):
+        self.room.add_song_to_room(self.song1)
+        self.room.add_song_to_room(self.song2)
+        self.room.add_song_to_room(self.song3)
+        self.guest1.add_favourite_song(self.song4)
+        self.assertEqual("Sorry, favourite song is unavailable", self.room.is_favourite_song_available(self.room, self.guest1))
