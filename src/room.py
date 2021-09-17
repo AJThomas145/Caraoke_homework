@@ -1,5 +1,3 @@
-import pdb
-
 class Room:
 
     def __init__(self, input_name,input_entry_fee):
