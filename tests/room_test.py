@@ -66,3 +66,10 @@ class TestRoom(unittest.TestCase):
         self.room.add_song_to_room(self.song3)
         self.guest1.add_favourite_song(self.song4)
         self.assertEqual("Sorry, favourite song is unavailable", self.room.is_favourite_song_available(self.guest1))
+
+    def test_total_entry_fee_paid_for_room(self):
+        self.room.add_guest_to_room(self.guest1)
+        self.room.add_guest_to_room(self.guest2)
+        self.room.add_guest_to_room(self.guest3)
+        self.room.total_entry_fee_paid_for_room()
+        self.assertEqual(15.00, self.room.total_entry_fee_paid)

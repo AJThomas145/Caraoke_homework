@@ -8,6 +8,8 @@ class Room:
         self.guests_in_room = []
         self.capacity = 5
         self.songs_to_sing = []
+        self.total_entry_fee_paid = 0
+
 
     def add_guest_to_room(self, guest):
         self.guests_in_room.append(guest)
@@ -31,10 +33,8 @@ class Room:
         return self.capacity
 
     def can_I_add_guest_to_room(self):
-        guests_that_can_enter_room = 0
-        guests_that_can_enter_room += self.capacity
-        guests_that_can_enter_room -= self.number_of_guests_in_room()
-        if guests_that_can_enter_room >= 1:
+        self.capacity -= self.number_of_guests_in_room()
+        if self.capacity >= 1:
             return True
         return False
 
@@ -44,6 +44,11 @@ class Room:
                 return "Whoo"
             if song.name != guest.favourite_song[0]:
                 return "Sorry, favourite song is unavailable"
+
+    def total_entry_fee_paid_for_room(self):
+        self.total_entry_fee_paid += self.number_of_guests_in_room() * self.entry_fee
+         
+
         
         
 
