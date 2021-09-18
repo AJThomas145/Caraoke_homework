@@ -13,3 +13,7 @@ class Guest:
 
     def does_guest_have_favourite_song(self):
         return len(self.favourite_song)
+
+    def pay_for_drink(self, drink):
+        self.wallet -= drink.price
+
