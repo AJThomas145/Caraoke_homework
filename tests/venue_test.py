@@ -1,7 +1,7 @@
 import unittest
 from src.room import Room
 from src.guest import Guest
-from src.song import Song
+from src.song import Song#
 from src.venue import Venue
 
 class TestVenue(unittest.TestCase):
@@ -24,6 +24,17 @@ class TestVenue(unittest.TestCase):
 
     def test_venue_has_a_till(self):
         self.assertEqual(100.00, self.venue.till)
+
+    def test_total_capacity(self):
+
+    def test_number_of_guest_in_venue(self):
+
+    def test_number_rooms(self):
+
+    def test_number_of_full_rooms(self):
+
+    def test_total_revenue(self):
+
 
     # def number_of_rooms(self):
 
