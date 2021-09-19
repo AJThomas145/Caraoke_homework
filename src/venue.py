@@ -15,6 +15,11 @@ class Venue:
     def add_room_entry_fee_to_venue_till(self, room):
         self.till += room.entry_fee
 
+    def sell_guest_entry_to_room(self, guest, room):
+        guest.pay_for_entry(room)
+        self.add_room_entry_fee_to_venue_till(room)
+        room.add_guest_to_room(guest)
+        
     def total_number_of_rooms(self):
         return len(self.number_of_rooms)
 
@@ -51,10 +56,11 @@ class Venue:
             full_rooms += 1
         return full_rooms   
 
-    # def what_is_venue_total_revenue(self, room1, room2, room3, bar1, bar2):
-    #     self.total_revenue += room1.total_entry_fee_paid_for_room()
-    #     self.total_revenue += room2.total_entry_fee_paid_for_room()
-    #     self.total_revenue += room3.total_entry_fee_paid_for_room()
+    def what_is_venue_total_revenue(self, bar1):
+        venue_starting_cash_float = 200.00
+        bar_starting_cash_float = 100.00
+        self.total_revenue += (self.till + bar1.till - venue_starting_cash_float - bar_starting_cash_float)
+        
 
         
         

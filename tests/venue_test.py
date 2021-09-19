@@ -48,11 +48,12 @@ class TestVenue(unittest.TestCase):
         self.venue.add_room_entry_fee_to_venue_till(self.room1)
         self.assertEqual(205.00, self.venue.till)
 
-    # def test_sell_guests_pays_for_room(self, guest, room):
-    #     self.guest1.pay_for_entry(self.room1)
-    #     self.add_cash_to_till(drink)
-    #     self.remove_drink_from_bar(drink)
-
+    def test_sell_guest_entry_to_room(self):
+        self.venue.sell_guest_entry_to_room(self.guest1, self.room1)
+        self.assertEqual(205.00, self.venue.till)
+        self.assertEqual(1, self.room1.number_of_guests_in_room())
+        self.assertEqual(25.00, self.guest1.wallet)
+    
     def test_total_capacity(self):
         self.assertEqual(15, self.venue.total_capacity(self.room1, self.room2, self.room3))
 
@@ -101,44 +102,13 @@ class TestVenue(unittest.TestCase):
         self.assertEqual(2, self.venue.how_many_rooms_are_full_capacity(self.room1, self.room2, self.room3))
         
 
-    # def test_total_revenue(self):
-    #     self.bar1.add_drink_to_bar(self.drink1)
-    #     self.bar1.add_drink_to_bar(self.drink1)
-    #     self.bar1.add_drink_to_bar(self.drink2)
-    #     self.bar1.add_drink_to_bar(self.drink2)
-    #     self.bar1.add_drink_to_bar(self.drink3)
-    #     self.bar1.add_drink_to_bar(self.drink3)
-    #     self.bar2.add_drink_to_bar(self.drink1)
-    #     self.bar2.add_drink_to_bar(self.drink2)
-    #     self.bar2.add_drink_to_bar(self.drink2)
-    #     self.bar2.add_drink_to_bar(self.drink2)
-    #     self.bar2.add_drink_to_bar(self.drink3)
-    #     self.bar2.add_drink_to_bar(self.drink3)
-    #     self.bar1.sell_drink_to_guest(self.guest1, self.drink1)
-    #     self.bar1.sell_drink_to_guest(self.guest2, self.drink1)
-    #     self.bar1.sell_drink_to_guest(self.guest3, self.drink2)
-    #     self.bar1.sell_drink_to_guest(self.guest1, self.drink2)
-    #     self.bar1.sell_drink_to_guest(self.guest2, self.drink3)
-    #     self.bar1.sell_drink_to_guest(self.guest3, self.drink3)
-    #     self.bar2.sell_drink_to_guest(self.guest1, self.drink1) 
-    #     self.bar2.sell_drink_to_guest(self.guest2, self.drink2)
-    #     self.bar2.sell_drink_to_guest(self.guest1, self.drink2)
-    #     self.bar2.sell_drink_to_guest(self.guest3, self.drink2)
-    #     self.bar2.sell_drink_to_guest(self.guest1, self.drink3)
-    #     self.bar2.sell_drink_to_guest(self.guest2, self.drink3)
-    #     self.room1.add_guest_to_room(self.guest1)
-    #     self.room1.add_guest_to_room(self.guest2)
-    #     self.room1.add_guest_to_room(self.guest3)
-    #     self.room1.add_guest_to_room(self.guest3)
-    #     self.room1.add_guest_to_room(self.guest3)
-    #     self.room2.add_guest_to_room(self.guest1)
-    #     self.room2.add_guest_to_room(self.guest2)
-    #     self.room2.add_guest_to_room(self.guest2)
-    #     self.room2.add_guest_to_room(self.guest2)
-    #     self.room3.add_guest_to_room(self.guest1)
-    #     self.room3.add_guest_to_room(self.guest2)
-    #     self.room3.add_guest_to_room(self.guest3)
-    #     self.assertEqual(31, self.venue.what_is_venue_total_revenue(self.room1, self.room2, self.room3, self.bar1, self.bar2))
+    def test_total_revenue(self):
+        self.bar1.add_drink_to_bar(self.drink1)
+        self.venue.add_room(self.room1)
+        self.bar1.sell_drink_to_guest(self.guest1, self.drink1)
+        self.venue.sell_guest_entry_to_room(self.guest1, self.room1)
+        self.venue.what_is_venue_total_revenue(self.bar1)
+        self.assertEqual(10.00, self.venue.total_revenue)
         
 
 
