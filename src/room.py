@@ -6,7 +6,7 @@ class Room:
         self.guests_in_room = []
         self.capacity = 5
         self.songs_to_sing = []
-        self.total_entry_fee_paid = 0
+        self.revenue = 0
 
 
     def add_guest_to_room(self, guest):
@@ -43,8 +43,8 @@ class Room:
             if song.name != guest.favourite_song[0]:
                 return "Sorry, favourite song is unavailable"
 
-    def total_entry_fee_paid_for_room(self):
-        self.total_entry_fee_paid += self.number_of_guests_in_room() * self.entry_fee
+    def total_room_revenue(self):
+        self.revenue += self.number_of_guests_in_room() * self.entry_fee
          
 
         
