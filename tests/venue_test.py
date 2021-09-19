@@ -104,11 +104,24 @@ class TestVenue(unittest.TestCase):
 
     def test_total_revenue(self):
         self.bar1.add_drink_to_bar(self.drink1)
+        self.bar1.add_drink_to_bar(self.drink2)
+        self.bar2.add_drink_to_bar(self.drink1)
+        self.bar2.add_drink_to_bar(self.drink3)
         self.venue.add_room(self.room1)
+        self.venue.add_room(self.room2)
+        self.venue.add_room(self.room3)
         self.bar1.sell_drink_to_guest(self.guest1, self.drink1)
+        self.bar1.sell_drink_to_guest(self.guest1, self.drink2)
+        self.bar2.sell_drink_to_guest(self.guest1, self.drink1)
+        self.bar2.sell_drink_to_guest(self.guest1, self.drink3)
         self.venue.sell_guest_entry_to_room(self.guest1, self.room1)
-        self.venue.what_is_venue_total_revenue(self.bar1)
-        self.assertEqual(10.00, self.venue.total_revenue)
+        self.venue.sell_guest_entry_to_room(self.guest2, self.room1)
+        self.venue.sell_guest_entry_to_room(self.guest1, self.room2)
+        self.venue.sell_guest_entry_to_room(self.guest3, self.room2)
+        self.venue.sell_guest_entry_to_room(self.guest2, self.room3)
+        self.venue.sell_guest_entry_to_room(self.guest3, self.room3)
+        self.venue.what_is_venue_total_revenue(self.bar1, self.bar2)
+        self.assertEqual(58.50, self.venue.total_revenue)
         
 
 

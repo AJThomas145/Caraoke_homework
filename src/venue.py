@@ -56,10 +56,11 @@ class Venue:
             full_rooms += 1
         return full_rooms   
 
-    def what_is_venue_total_revenue(self, bar1):
+    def what_is_venue_total_revenue(self, bar1, bar2):
         venue_starting_cash_float = 200.00
-        bar_starting_cash_float = 100.00
-        self.total_revenue += (self.till + bar1.till - venue_starting_cash_float - bar_starting_cash_float)
+        bar1_starting_cash_float = 100.00
+        bar2_starting_cash_float = 200.00
+        self.total_revenue += (self.till + bar1.till + bar2.till - venue_starting_cash_float - bar1_starting_cash_float - bar2_starting_cash_float)
         
 
         
